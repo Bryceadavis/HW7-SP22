@@ -56,12 +56,12 @@ class main_window(QWidget, Ui_Form):
 
         self.Steam.calc()
         state = self.Steam
-        self.le_P.setText(str(round(self.Steam.P, 4)))
-        self.le_T.setText(str(round(self.Steam.T, 4)))
-        self.le_Q.setText(str(round(self.Steam.x, 4)))
-        self.le_H.setText(str(round(self.Steam.h, 4)))
-        self.le_S.setText(str(round(self.Steam.s, 4)))
-        self.le_SpV.setText(str(round(self.Steam.v, 4)))
+        self.le_P.setText("{:.2f}".format(self.Steam.P)) #&AKO altered to match HW doc decimal places
+        self.le_T.setText("{:.2f}".format(self.Steam.T))
+        self.le_Q.setText("{:.4f}".format(self.Steam.x))
+        self.le_H.setText("{:.2f}".format(self.Steam.h))
+        self.le_S.setText("{:.4f}".format(self.Steam.s))
+        self.le_SpV.setText("{:.5f}".format(self.Steam.v))
         self.lbl_Properties.setText((str(self.Steam.region)))
         return
 
