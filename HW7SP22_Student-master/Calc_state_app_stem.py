@@ -18,7 +18,7 @@ class main_window(QWidget, Ui_Form):
         super().__init__()  # run constructor of parent classes
         self.setupUi(self)  # run setupUi() (see Ui_Form)
         # $JES MISSING CODE$ ('Steam Property Calculator') # set the window title
-
+        self.setWindowTitle( 'Steam Property Calculator') #&AKO
         self.Steam = steam()  # instantiate a steam object
         # create a list of the check boxes on the main window
         self.checkBoxes = [self.chk_Press, self.chk_Temp, self.chk_Quality, self.chk_Enthalpy, self.chk_Entropy,
