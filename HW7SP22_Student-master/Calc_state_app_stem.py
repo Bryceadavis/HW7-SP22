@@ -1,4 +1,4 @@
-import numpy as np # banana
+import numpy as np 
 from Calc_state import Steam_SI as steam  # import any of your own classes as you wish
 
 import sys
@@ -28,8 +28,6 @@ class main_window(QWidget, Ui_Form):
         self.show()
 
     def assign_widgets(self):
-        # $JES MISSING CODE$  connect clicked signal of pushButton_Exit to self.ExitApp
-        # $JES MISSING CODE$  connect clicked signal of pushButton_Calculate to self.Calculate
         self.pushButton_Exit.clicked.connect(self.ExitApp)
         self.pushButton_Calculate.clicked.connect(self.Calculate)
 
