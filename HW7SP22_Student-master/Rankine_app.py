@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import QtWidgets as qtw
 from Rankine_GUI import Ui_Form  # from the GUI file your created
 import rankineFile
-#banana
+
 class main_window(qtw.QWidget, Ui_Form):
     def __init__(self):
         """
