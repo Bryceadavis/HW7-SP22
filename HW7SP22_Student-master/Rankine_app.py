@@ -40,6 +40,8 @@ class main_window(qtw.QWidget, Ui_Form):
             self.le_PumpWork.setText(str(round(self.Rankine.pump_work, 2)))
             self.le_Efficiency.setText(str(round(self.Rankine.efficiency, 2)))
             self.le_TurbineWork.setText(str(round(self.Rankine.turbine_work, 2)))
+            self.lbl_SatPropHigh.setText(str(self.Rankine.state1))
+            self.lbl_SatPropLow.setText(str(self.Rankine.state2))
             self.show()
             return
 
@@ -60,6 +62,8 @@ class main_window(qtw.QWidget, Ui_Form):
             self.le_PumpWork.setText(str(round(self.Rankine.pump_work, 2)))
             self.le_Efficiency.setText(str(round(self.Rankine.efficiency, 2)))
             self.le_TurbineWork.setText(str(round(self.Rankine.turbine_work, 2)))
+            self.lbl_SatPropHigh.setText(str(self.Rankine.state1))
+            self.lbl_SatPropLow.setText(str(self.Rankine.state2))
             self.show()
             return
 
