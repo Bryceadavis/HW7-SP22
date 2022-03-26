@@ -28,21 +28,21 @@ class main_window(qtw.QWidget, Ui_Form):
         steam state.  Finally, output the results to the line edit widgets.
         :return:
         """
-        self.Rankine.p_high = (self.le_PHigh.text()) if self.le_PHigh.isEnabled() else None
-        self.Rankine.p_low = (self.le_PLow.text()) if self.le_PLow.isEnabled() else None
-        self.Rankine.efficiency= (self.le_Efficiency.text())  if self.le_Efficiency.isEnabled() else None
-        self.Rankine.eff_turbine= (self.le_TurbineInletCondition.text())  if self.le_TurbineEff.isEnabled() else None
+        self.Rankine.p_high = float(self.le_PHigh.text()) if self.le_PHigh.isEnabled() else None
+        self.Rankine.p_low = float(self.le_PLow.text()) if self.le_PLow.isEnabled() else None
+        self.Rankine.efficiency= float(self.le_Efficiency.text())  if self.le_Efficiency.isEnabled() else None
+        self.Rankine.eff_turbine= float(self.le_TurbineInletCondition.text())  if self.le_TurbineEff.isEnabled() else None
 
         self.Rankine.calc_efficiency()
         state = self.Rankine
-        self.le_H1.setText(self.rankine.state1)
-        self.le_H2.setText(self.rankine.state2)
-        self.le_H3.setText(self.rankine.state3)
-        self.le_H4.setText(self.rankine.state4)
-        self.le_HeatAdded.setText(self.rankine.heat_added)
-        self.le_PumpWork.setText(self.rankine.pump_work)
-        self.le_Efficiency.setText(self.rankine.efficiency)
-        self.le_TurbineWork.setText(self.rankine.turbine_work)
+        self.le_H1.setText(str(round(self.Rankine.state1.h, 2)))
+        self.le_H2.setText(str(round(self.Rankine.state2.h, 2)))
+        self.le_H3.setText(str(round(self.Rankine.state3.h, 2)))
+        self.le_H4.setText(str(round(self.Rankine.state4.h, 2)))
+        self.le_HeatAdded.setText(str(round(self.Rankine.heat_added, 2)))
+        self.le_PumpWork.setText(str(round(self.Rankine.pump_work, 2)))
+        self.le_Efficiency.setText(str(round(self.Rankine.efficiency, 2)))
+        self.le_TurbineWork.setText(str(round(self.Rankine.turbine_work, 2)))
         self.show()
         return
 
