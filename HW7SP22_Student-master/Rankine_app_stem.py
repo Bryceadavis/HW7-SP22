@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PyQt5.QtGui import QCursor
 from PyQt5.QtCore import Qt
 
-from Calc_state_gui import Ui_Form  # from the GUI file your created
+from Calc_state_gui import Ui_Form  # from the GUI file your create
 
 
 class main_window(QWidget, Ui_Form):
