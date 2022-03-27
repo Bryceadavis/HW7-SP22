@@ -2,7 +2,7 @@ from Steam_work import steam
 import numpy as np
 from matplotlib import pyplot as plt
 #All code here is from Dr.Smay's Rankine.py file for EX2 except for import alteration in line 1
-#oranges
+
 class rankine():
     def __init__(self, p_low=8, p_high=8000, t_high=None, eff_turbine=1.0, name='Rankine Cycle'):
         '''
