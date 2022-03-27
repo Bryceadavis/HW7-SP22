@@ -44,7 +44,7 @@ class rankine():
 
         self.turbine_work= (self.state1.h - self.state2.h)*self.eff_turbine # calculate turbine work #multiplied by turbine efficiency
         self.pump_work= self.state4.h - self.state3.h # calculate pump work
-        self.heat_added= self.state1.h - self.state4.h # calculate heat added
+        self.heat_added= 100*(self.state1.h - self.state4.h) # calculate heat added
         self.efficiency=100.0*(self.turbine_work - self.pump_work)/self.heat_added
         return self.efficiency
 
