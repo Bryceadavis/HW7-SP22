@@ -46,7 +46,7 @@ class rankine():
         self.state3= steam(self.p_low,x=0, name='Pump Inlet') # instantiate a steam object with conditions of state 3 as saturated liquid, named 'Pump Inlet'
         #state 4: pump exit (p_high,s=s_pump_inlet) typically sub-cooled, but estimate as saturated liquid
         self.state4=steam(self.p_high,s=self.state3.s, name='Pump Exit')
-        self.state4.h=self.state3.h+self.state3.v*(self.p_high-self.p_low)
+        self.state4.h=self.state3.h+self.state3.v*(100*self.p_high-100*self.p_low)
 
         self.turbine_work= self.state1.h - self.state2.h # calculate turbine work
         self.pump_work= self.state4.h - self.state3.h # calculate pump work
