@@ -1,7 +1,7 @@
 from Steam_work import steam
 import numpy as np
 from matplotlib import pyplot as plt
-#All code here is from Dr.Smay's Rankine.py file for EX2 except for import alteration in line 1
+#Code here is a modification of Dr.Smay's Rankine.py file
 
 class rankine():
     def __init__(self, p_low=8, p_high=8000, t_high=None, eff_turbine=1.0, quality=1, name='Rankine Cycle'):
