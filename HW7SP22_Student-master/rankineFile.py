@@ -72,8 +72,6 @@ class rankine():
 
     def plot_cycle_TS(self):
         """
-        I want to plot the Rankine cycle on T-S coordinates along with the vapor dome and shading in the cycle.
-        I notice there are several lines on the plot:
         saturated liquid T(s) colored blue
         saturated vapor T(s) colored red
         The high and low isobars and lines connecting state 1 to 2, and 3 to saturated liquid at phigh
