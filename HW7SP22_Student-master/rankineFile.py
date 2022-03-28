@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 #All code here is from Dr.Smay's Rankine.py file for EX2 except for import alteration in line 1
 
 class rankine():
-    def __init__(self, p_low=8, p_high=8000, t_high=None, eff_turbine=1.0, name='Rankine Cycle'):
+    def __init__(self, p_low=8, p_high=8000, t_high=None, eff_turbine=1.0, quality=1, name='Rankine Cycle'):
         '''
         Constructor for rankine power cycle.  If t_high is not specified, the State 1
         is assigned x=1 (saturated steam @ p_high).  Otherwise, use t_high to find State 1.
@@ -19,27 +19,27 @@ class rankine():
         self.t_high=t_high
         self.name=name
         self.efficiency=None
-        self.turbine_eff=eff_turbine
+        self.eff_turbine=eff_turbine
         self.turbine_work=0
         self.pump_work=0
         self.heat_added=0
         self.state1=None
-        self.state2s=None
         self.state2=None
         self.state3=None
         self.state4=None
+        self.quality=quality # I ADDED THIS PART, AS IT NEEDS TO BE USED IN THE GUI
 
     def calc_efficiency(self):
         #calculate the 4 states
         #state 1: turbine inlet (p_high, t_high) superheated or saturated vapor
         if(self.t_high==None):
-            self.state1 = steam(self.p_high, x=1.0, name='Turbine Inlet') # instantiate a steam object with conditions of state 1 as saturated steam, named 'Turbine Inlet'
+            self.state1 = steam(self.p_high, x=self.quality, name='Turbine Inlet') # instantiate a steam object with conditions of state 1 as saturated steam, named 'Turbine Inlet'
         else:
             self.state1= steam(self.p_high,T=self.t_high,name='Turbine Inlet') # instantiate a steam object with conditions of state 1 at t_high, named 'Turbine Inlet'
         #state 2: turbine exit (p_low, s=s_turbine inlet) two-phase
         self.state2s = steam(self.p_low, s=self.state1.s, name="Turbine Exit")  # instantiate a steam object with conditions of state 2s, named 'Turbine Exit'
-        if self.turbine_eff <1.0:  # eff=(h1-h2)/(h1-h2s) -> h2=h1-eff(h1-h2s)
-            h2=self.state1.h-self.turbine_eff*(self.state1.h-self.state2s.h)
+        if self.eff_turbine <1.0:  # eff=(h1-h2)/(h1-h2s) -> h2=h1-eff(h1-h2s)
+            h2=self.state1.h-self.eff_turbine*(self.state1.h-self.state2s.h)
             self.state2=steam(self.p_low,h=h2, name="Turbine Exit")
         else:
             self.state2=self.state2s
@@ -47,7 +47,7 @@ class rankine():
         self.state3= steam(self.p_low,x=0, name='Pump Inlet') # instantiate a steam object with conditions of state 3 as saturated liquid, named 'Pump Inlet'
         #state 4: pump exit (p_high,s=s_pump_inlet) typically sub-cooled, but estimate as saturated liquid
         self.state4=steam(self.p_high,s=self.state3.s, name='Pump Exit')
-        self.state4.h=self.state3.h+self.state3.v*(100*self.p_high-100*self.p_low)
+        self.state4.h=self.state3.h+self.state3.v*(self.p_high-self.p_low)
 
         self.turbine_work= self.state1.h - self.state2.h # calculate turbine work
         self.pump_work= self.state4.h - self.state3.h # calculate pump work
@@ -61,7 +61,7 @@ class rankine():
             self.calc_efficiency()
         print('Cycle Summary for: ', self.name)
         print('\tEfficiency: {:0.3f}%'.format(self.efficiency))
-        print('\tTurbine Eff:  {:0.2f}'.format(self.turbine_eff))
+        print('\tTurbine Eff:  {:0.2f}'.format(self.eff_turbine))
         print('\tTurbine Work: {:0.3f} kJ/kg'.format(self.turbine_work))
         print('\tPump Work: {:0.3f} kJ/kg'.format(self.pump_work))
         print('\tHeat Added: {:0.3f} kJ/kg'.format(self.heat_added))
@@ -151,7 +151,7 @@ class rankine():
 
         txt= 'Summary:'
         txt+= '\n$\eta_{cycle} = $'+'{:0.2f}%'.format(self.efficiency)
-        txt+= '\n$\eta_{turbine} = $'+'{:0.2f}'.format(self.turbine_eff)
+        txt+= '\n$\eta_{turbine} = $'+'{:0.2f}'.format(self.eff_turbine)
         txt+= '\n$W_{turbine} = $'+ '{:0.2f}'.format(self.turbine_work)+r'$\frac{kJ}{kg}$'
         txt+= '\n$W_{pump} = $'+'{:0.2f}'.format(self.pump_work)+r'$\frac{kJ}{kg}$'
         txt+= '\n$Q_{in} = $'+ '{:0.2f}'.format(self.heat_added)+r'$\frac{kJ}{kg}$'
