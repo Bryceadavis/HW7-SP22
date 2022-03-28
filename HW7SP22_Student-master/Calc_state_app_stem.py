@@ -28,12 +28,13 @@ class main_window(QWidget, Ui_Form):
         self.show()
 
     def assign_widgets(self):
-        self.pushButton_Exit.clicked.connect(self.ExitApp)
-        self.pushButton_Calculate.clicked.connect(self.Calculate)
+        """This function controls what happens when the GUI buttons are clicked."""
+        self.pushButton_Exit.clicked.connect(self.ExitApp) #closes app when exit is clicked
+        self.pushButton_Calculate.clicked.connect(self.Calculate) #calls Calculate function when Calculate is clicked
 
     def Calculate(self):
         """
-        Here, we need to scan through the check boxes and ensure that only two are selected a defining properties
+        Here, we need to scan through the check boxes and ensure that only two are selected and define properties
         for calculating the state of the steam.  Then set the properties of the steam object and calculate the
         steam state.  Finally, output the results to the line edit widgets.
         :return:
@@ -45,7 +46,7 @@ class main_window(QWidget, Ui_Form):
         if nChecked != 2:
             return
 
-        self.Steam.P = float(self.le_P.text()) if self.chk_Press.isChecked() else None
+        self.Steam.P = float(self.le_P.text()) if self.chk_Press.isChecked() else None #converts typed number to float and assigns to steam parameter if box is checked
         self.Steam.T = float(self.le_T.text()) if self.chk_Temp.isChecked() else None
         self.Steam.x = float(self.le_Q.text()) if self.chk_Quality.isChecked() else None
         self.Steam.h = float(self.le_H.text()) if self.chk_Enthalpy.isChecked() else None
@@ -53,9 +54,9 @@ class main_window(QWidget, Ui_Form):
         self.Steam.v = float(self.le_SpV.text()) if self.chk_SpV.isChecked() else None
 
         self.Steam.calc()
-        state = self.Steam
+        state = self.Steam #not used
         self.le_P.setText("{:.2f}".format(self.Steam.P)) #&AKO altered to match HW doc decimal places
-        self.le_T.setText("{:.2f}".format(self.Steam.T))
+        self.le_T.setText("{:.2f}".format(self.Steam.T)) #edits line outputs;prints what you input as well as what is calculated from your inputs to GUI
         self.le_Q.setText("{:.4f}".format(self.Steam.x))
         self.le_H.setText("{:.2f}".format(self.Steam.h))
         self.le_S.setText("{:.4f}".format(self.Steam.s))
