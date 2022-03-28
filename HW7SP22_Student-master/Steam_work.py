@@ -61,7 +61,7 @@ class steam():
 
         self.hf=hf #this creates a member variable for the class that can be accessed from an object
 
-        # ALSO ADDED THESE PARTS BELOW. THEY WERE NOT IDENTIFIED, THEREFORE WERE NOT BEING USED.
+        # Added for GUI
         self.hg = hg
         self.sf = sf
         self.sg = sg
