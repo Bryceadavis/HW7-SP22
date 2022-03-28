@@ -47,7 +47,7 @@ class steam():
         tcol, hcol, scol, pcol = np.loadtxt('superheated_water_table.txt', skiprows=1, unpack=True) #use np.loadtxt to read the superheated properties
 
         R=8.314/(18/1000) #ideal gas constant for water [J/(mol K)]/[kg/mol]
-        Pbar=self.p # no conversion needed pressure already in bar - 1bar=100kPa roughly
+        Pbar=self.p/100 # pressure in bar - 1bar=100kPa roughly
 
         #get saturated properties
         #note: these are local variables only.  Their scope is only in this function
@@ -60,6 +60,14 @@ class steam():
         vg=float(griddata((ps),vgs,(Pbar)))
 
         self.hf=hf #this creates a member variable for the class that can be accessed from an object
+
+        # ALSO ADDED THESE PARTS BELOW. THEY WERE NOT IDENTIFIED, THEREFORE WERE NOT BEING USED.
+        self.hg = hg
+        self.sf = sf
+        self.sg = sg
+        self.vf = vf
+        self.vg = vg
+
 
         #region determine which second property is given
         if self.T is not None:
