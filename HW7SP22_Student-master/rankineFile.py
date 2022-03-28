@@ -27,7 +27,7 @@ class rankine():
         self.state2=None
         self.state3=None
         self.state4=None
-        self.quality=quality # I ADDED THIS PART, AS IT NEEDS TO BE USED IN THE GUI
+        self.quality=quality # added for GUI
 
     def calc_efficiency(self):
         #calculate the 4 states
